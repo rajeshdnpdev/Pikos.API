@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -32,6 +33,11 @@ namespace Pikos.DAL
         public async Task<IEnumerable<TEntity>> GetAll()
         {
             return await context.Set<TEntity>().ToListAsync();
+        }
+
+        public  IEnumerable<TEntity> ExecWithStoreProcedure(string query)
+        {
+            return context.Set<TEntity>().FromSqlRaw(query).ToList();
         }
     }
 }

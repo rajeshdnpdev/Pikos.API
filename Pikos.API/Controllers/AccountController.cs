@@ -9,6 +9,7 @@ using static Pikos.Models.DTOs.AccountDtos;
 using Microsoft.AspNetCore.Http;
 using System;
 using Microsoft.AspNetCore.Authorization;
+using System.Linq;
 
 namespace Pikos.API.Controllers
 {
@@ -18,10 +19,12 @@ namespace Pikos.API.Controllers
     public class AccountController : BaseController
     {
         private readonly IAccountService accountService;
+        private readonly IOrderService orderService;
 
-        public AccountController(IAccountService accountService)
+        public AccountController(IAccountService accountService, IOrderService orderService)
         {
             this.accountService = accountService;
+            this.orderService = orderService;
         }
 
         [Route("signin")]
@@ -93,6 +96,25 @@ namespace Pikos.API.Controllers
             }
 
             return NotFound(new ErrorResponse { Status = ResponseStatus.FAILED, Message = "Failed to revoke the token" });
+        }
+
+        [HttpGet]
+        [Route("all")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetAll(int pageSize, int currentPage)
+        {
+            var result = await orderService.GetAll();
+
+            return Ok(new { pageSize = pageSize, currentPage = currentPage, totalRecords = result.Count(), data = result.Skip(currentPage * pageSize).Take(pageSize) });
+        }
+
+        [HttpGet]
+        [Route("top")]
+        [AllowAnonymous]
+        public IActionResult GetAllExpensiveProducts()
+        {
+            var result = orderService.GetAllExpensiveProducts();
+            return Ok(result);
         }
     }
 }

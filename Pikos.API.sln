@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pikos.API", "Pikos.API\Pikos.API.csproj", "{4599CFFB-0CF8-485C-BE85-62D1A34B4AB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pikos.API", "Pikos.API\Pikos.API.csproj", "{4599CFFB-0CF8-485C-BE85-62D1A34B4AB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pikos.Models", "Pikos.Models\Pikos.Models.csproj", "{516B1EE1-FA5E-494C-8EB9-65D1BE8C7E3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pikos.Models", "Pikos.Models\Pikos.Models.csproj", "{516B1EE1-FA5E-494C-8EB9-65D1BE8C7E3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pikos.DAL", "Pikos.DAL\Pikos.DAL.csproj", "{335AB64D-4641-4F79-BE8C-FDF0EC182AFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pikos.DAL", "Pikos.DAL\Pikos.DAL.csproj", "{335AB64D-4641-4F79-BE8C-FDF0EC182AFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pikos.BLL", "Pikos.BLL\Pikos.BLL.csproj", "{46814A61-A21C-4EF9-B69D-CC0B8287F672}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pikos.BLL", "Pikos.BLL\Pikos.BLL.csproj", "{46814A61-A21C-4EF9-B69D-CC0B8287F672}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pikos.Helpers", "Pikos.Helpers\Pikos.Helpers.csproj", "{5279C27D-69AF-4856-8C63-4EC5C15B1B1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pikos.Helpers", "Pikos.Helpers\Pikos.Helpers.csproj", "{5279C27D-69AF-4856-8C63-4EC5C15B1B1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pikos.APITests", "Pikos.APITests\Pikos.APITests.csproj", "{DF877806-3FF3-4E06-B38E-BC51970B2890}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{5279C27D-69AF-4856-8C63-4EC5C15B1B1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5279C27D-69AF-4856-8C63-4EC5C15B1B1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5279C27D-69AF-4856-8C63-4EC5C15B1B1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF877806-3FF3-4E06-B38E-BC51970B2890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF877806-3FF3-4E06-B38E-BC51970B2890}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF877806-3FF3-4E06-B38E-BC51970B2890}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF877806-3FF3-4E06-B38E-BC51970B2890}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

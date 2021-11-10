@@ -15,6 +15,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Pikos.Helpers;
 using System.Text;
+using Pikos.DAL.Models;
+using System.Text.Json.Serialization;
 
 namespace Pikos.API
 {
@@ -31,7 +33,9 @@ namespace Pikos.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers()
+                 .AddJsonOptions(o => o.JsonSerializerOptions
+                .ReferenceHandler = ReferenceHandler.Preserve);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pikos.API", Version = "v1" });
@@ -41,6 +45,18 @@ namespace Pikos.API
             {
                 options.UseSqlServer(Configuration.GetConnectionString("PikosDbConnection"));
             });
+
+            services.AddDbContext<NorthwindDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("NorthwindDB"));
+            });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("Policy11",
+                builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            });
+
 
             // configure strongly typed settings objects
             var appSettingsSection = Configuration.GetSection("AppSettings");
@@ -62,9 +78,8 @@ namespace Pikos.API
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors("Policy11");
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -79,7 +94,9 @@ namespace Pikos.API
             collection.AddScoped<IUnitOfWork, UnitOfWork>();
             collection.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             collection.AddScoped<IUserRepository, UserRepository>();
+            collection.AddScoped<IOrderRepository, OrderRepository>();
             collection.AddScoped<IAccountService, AccountService>();
+            collection.AddScoped<IOrderService, OrderService>();
         }
 
         private void ConfigureJWTOptions(IServiceCollection services, IConfiguration section)
